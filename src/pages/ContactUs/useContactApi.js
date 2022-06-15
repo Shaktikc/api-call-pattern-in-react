@@ -14,6 +14,12 @@ export const useContactApi = () => {
     isError: isErrorGetContact,
     isLoading: isLoadingGetContact,
   } = useQuery("getContact", getContact);
+
+  // async function postContact() {
+  //   const res = await axios.post(`${baseUrl}/api/contact-us/`, values);
+  //   return res;
+  // }
+
   return {
     isErrorGetContact,
     isLoadingGetContact,
