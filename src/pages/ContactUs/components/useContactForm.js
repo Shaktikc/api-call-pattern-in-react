@@ -34,7 +34,6 @@ export const useContactForm = () => {
     validationSchema,
     validateOnChange: false,
     onSubmit: (values, { resetForm }) => {
-      // dispatch(getContact(values));
       postContactMutation.mutate(values);
       resetForm();
     },
@@ -43,14 +42,6 @@ export const useContactForm = () => {
 
   useEffect(() => {
     if (postContactMutation.isSuccess) {
-      // toast({
-      //   title: postContactMutation.data.data.message,
-      //   position: "top",
-      //   description: "You will shortly contact you.",
-      //   status: "success",
-      //   duration: 9000,
-      //   isClosable: true,
-      // });
       toast.update(toastIdRef.current, {
         description: postContactMutation.data.data.message,
       });
@@ -75,7 +66,11 @@ export const useContactForm = () => {
         isClosable: true,
       });
     }
-  }, [postContactMutation.isSuccess]);
+  }, [
+    postContactMutation.isSuccess,
+    postContactMutation.isLoading,
+    postContactMutation.isError,
+  ]);
 
   return {
     formik,
