@@ -2,34 +2,13 @@ import { Box, GridItem, Input, Text } from "@chakra-ui/react";
 import { Textarea, Grid, Button, useToast } from "@chakra-ui/react";
 
 import React, { useEffect } from "react";
-import { useContactForm } from "./useContactFrom";
+import { useContactForm } from "./useContactForm";
 
 export const ContactForm = () => {
-  // const footers = useSelector((state) => state.footers);
   const { formik } = useContactForm();
 
-  // useEffect(() => {
-  //   if (footers?.success === true) {
-  //     toast({
-  //       title: "Success",
-  //       status: "success",
-  //       position: "top",
-  //       duration: 3000,
-  //       isClosable: true,
-  //     });
-  //   } else if (footers?.success === false) {
-  //     toast({
-  //       title: "Not Success",
-  //       status: "error",
-  //       duration: 3000,
-  //       position: "top",
-  //       isClosable: true,
-  //     });
-  //   }
-  // }, [footers?.success]);
-
   return (
-    <Box p="2rem">
+    <Box bg="gray.300" p="2rem" borderRadius={"1rem"}>
       <form onSubmit={formik.handleSubmit}>
         <Box>
           <Text fontWeight={"400"} fontSize="lg" mb="0.5rem">

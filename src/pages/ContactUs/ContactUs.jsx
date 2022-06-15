@@ -1,13 +1,13 @@
 import React from "react";
 import { ContactInfo } from "./components/ContactInfo";
-import { Box } from "@chakra-ui/react";
+import { Box, Flex } from "@chakra-ui/react";
 import { ContactForm } from "./components/ContactForm";
 
 export const ContactUs = () => {
   return (
-    <Box>
+    <Flex gap={"5rem"} mt="4rem">
       <ContactInfo />
       <ContactForm />
-    </Box>
+    </Flex>
   );
 };
