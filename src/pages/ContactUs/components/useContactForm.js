@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import * as Yup from "yup";
 import { useToast } from "@chakra-ui/react";
 import { useFormik } from "formik";
@@ -39,13 +39,27 @@ export const useContactForm = () => {
       resetForm();
     },
   });
+  const toastIdRef = useRef();
 
   useEffect(() => {
     if (postContactMutation.isSuccess) {
-      toast({
-        title: postContactMutation.data.data.message,
+      // toast({
+      //   title: postContactMutation.data.data.message,
+      //   position: "top",
+      //   description: "You will shortly contact you.",
+      //   status: "success",
+      //   duration: 9000,
+      //   isClosable: true,
+      // });
+      toast.update(toastIdRef.current, {
+        description: postContactMutation.data.data.message,
+      });
+    }
+
+    if (postContactMutation.isLoading) {
+      toastIdRef.current = toast({
+        title: "loading.....",
         position: "top",
-        description: "You will shortly contact you.",
         status: "success",
         duration: 9000,
         isClosable: true,
