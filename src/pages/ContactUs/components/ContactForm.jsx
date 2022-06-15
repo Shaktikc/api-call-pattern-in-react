@@ -1,8 +1,5 @@
 import { Box, GridItem, Input, Text } from "@chakra-ui/react";
 import { Textarea, Grid, Button, useToast } from "@chakra-ui/react";
-import { useFormik } from "formik";
-import { getContact } from "../../../redux/FooterSlice";
-import { useDispatch, useSelector } from "react-redux";
 
 import React, { useEffect } from "react";
 import { useContactForm } from "./useContactFrom";
@@ -10,7 +7,6 @@ import { useContactForm } from "./useContactFrom";
 export const ContactForm = () => {
   // const footers = useSelector((state) => state.footers);
   const { formik } = useContactForm();
-  const dispatch = useDispatch();
 
   // useEffect(() => {
   //   if (footers?.success === true) {
