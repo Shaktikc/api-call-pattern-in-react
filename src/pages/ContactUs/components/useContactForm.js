@@ -2,8 +2,10 @@ import React from "react";
 import * as Yup from "yup";
 import { useToast } from "@chakra-ui/react";
 import { useFormik } from "formik";
+import { useContactApi } from "../useContactApi";
 
 export const useContactForm = () => {
+  const { postContactMutation } = useContactApi();
   const toast = useToast();
 
   const validationSchema = Yup.object({
@@ -33,6 +35,7 @@ export const useContactForm = () => {
     validateOnChange: false,
     onSubmit: (values, { resetForm }) => {
       // dispatch(getContact(values));
+      postContactMutation.mutate(values);
       resetForm();
     },
   });

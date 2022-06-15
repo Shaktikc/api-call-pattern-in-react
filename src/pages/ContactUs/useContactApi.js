@@ -1,8 +1,8 @@
 import React from "react";
 import axios from "axios";
-import { useQuery } from "react-query";
+import { useQuery, useMutation } from "react-query";
 
-const baseUrl = "https://api.nepalayanhandicraft.com";
+const baseUrl = "https://api.theyetitech.com";
 export const useContactApi = () => {
   async function getContact() {
     const res = await axios.get(`${baseUrl}/api/about/`);
@@ -15,14 +15,17 @@ export const useContactApi = () => {
     isLoading: isLoadingGetContact,
   } = useQuery("getContact", getContact);
 
-  // async function postContact() {
-  //   const res = await axios.post(`${baseUrl}/api/contact-us/`, values);
-  //   return res;
-  // }
+  async function postContact(values) {
+    const res = await axios.post(`${baseUrl}/api/contact-us/`, values);
+    return res;
+  }
+
+  const postContactMutation = useMutation(postContact);
 
   return {
     isErrorGetContact,
     isLoadingGetContact,
     getContactData,
+    postContactMutation,
   };
 };
