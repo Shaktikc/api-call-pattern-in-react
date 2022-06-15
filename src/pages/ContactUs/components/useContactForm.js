@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import * as Yup from "yup";
 import { useToast } from "@chakra-ui/react";
 import { useFormik } from "formik";
@@ -39,6 +39,20 @@ export const useContactForm = () => {
       resetForm();
     },
   });
+
+  useEffect(() => {
+    if (postContactMutation.isSuccess) {
+      toast({
+        title: "Contact submitted sucessfully.",
+        position: "top",
+        description: "You will shortly contact you.",
+        status: "success",
+        duration: 9000,
+        isClosable: true,
+      });
+    }
+  }, [postContactMutation.isSuccess]);
+
   return {
     formik,
     toast,
