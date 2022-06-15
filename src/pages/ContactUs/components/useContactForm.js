@@ -13,7 +13,7 @@ export const useContactForm = () => {
       .email("Invalid email format")
       .required("Please enter your email"),
     phone: Yup.number()
-      .min(1111111, "Invalid Number")
+      .min(1, "Invalid Number")
       .max(11111111111, "Invalid Number")
       .required("Please enter your phone"),
     full_name: Yup.string().required("Please enter your full_name"),
@@ -43,10 +43,20 @@ export const useContactForm = () => {
   useEffect(() => {
     if (postContactMutation.isSuccess) {
       toast({
-        title: "Contact submitted sucessfully.",
+        title: postContactMutation.data.data.message,
         position: "top",
         description: "You will shortly contact you.",
         status: "success",
+        duration: 9000,
+        isClosable: true,
+      });
+    }
+    if (postContactMutation.isError) {
+      toast({
+        title: "Contact submitted sucessfully.",
+        position: "top",
+        description: "You will shortly contact you.",
+        status: "error",
         duration: 9000,
         isClosable: true,
       });
