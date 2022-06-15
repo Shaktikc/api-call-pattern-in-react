@@ -6,6 +6,7 @@ import { ContactUs } from "./pages/ContactUs/ContactUs";
 function App() {
   return (
     <Box>
+      {" "}
       <ContactUs />
     </Box>
   );

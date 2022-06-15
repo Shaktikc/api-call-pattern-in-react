@@ -2,12 +2,11 @@ import React from "react";
 import axios from "axios";
 import { useQuery } from "react-query";
 
+const baseUrl = "https://api.nepalayanhandicraft.com";
 export const useContactApi = () => {
   async function getContact() {
-    const { data } = await axios.get(
-      "https://jsonplaceholder.typicode.com/posts"
-    );
-    return data;
+    const res = await axios.get(`${baseUrl}/api/about/`);
+    return res.data.data;
   }
   const {
     data: getContactData,
