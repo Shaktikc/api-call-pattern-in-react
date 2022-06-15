@@ -3,64 +3,34 @@ import { Textarea, Grid, Button, useToast } from "@chakra-ui/react";
 import { useFormik } from "formik";
 import { getContact } from "../../../redux/FooterSlice";
 import { useDispatch, useSelector } from "react-redux";
-import * as Yup from "yup";
+
 import React, { useEffect } from "react";
+import { useContactForm } from "./useContactFrom";
 
 export const ContactForm = () => {
-  const footers = useSelector((state) => state.footers);
+  // const footers = useSelector((state) => state.footers);
+  const { formik } = useContactForm();
   const dispatch = useDispatch();
-  const toast = useToast();
 
-  const validationSchema = Yup.object({
-    email: Yup.string()
-      .email("Invalid email format")
-      .required("Please enter your email"),
-    phone: Yup.number()
-      .min(1111111, "Invalid Number")
-      .max(11111111111, "Invalid Number")
-      .required("Please enter your phone"),
-    full_name: Yup.string().required("Please enter your full_name"),
-    subject: Yup.string().required("Please enter subject"),
-    message: Yup.string().required(
-      "Please enter the message you want to deliver."
-    ),
-  });
-
-  const formik = useFormik({
-    initialValues: {
-      full_name: "",
-      phone: "",
-      email: "",
-      subject: "",
-      message: "",
-    },
-    validationSchema,
-    validateOnChange: false,
-    onSubmit: (values, { resetForm }) => {
-      dispatch(getContact(values));
-      resetForm();
-    },
-  });
-
-  useEffect(() => {
-    if (footers?.success === true) {
-      toast({
-        title: "Success",
-        status: "success",
-        position: "top",
-        duration: 3000,
-        isClosable: true,
-      });
-    } else if (footers?.success === false) {
-      toast({
-        title: "Not Success",
-        status: "error",
-        duration: 3000,
-        position: "top",
-        isClosable: true,
-      });
-    }
-  }, [footers?.success]);
+  // useEffect(() => {
+  //   if (footers?.success === true) {
+  //     toast({
+  //       title: "Success",
+  //       status: "success",
+  //       position: "top",
+  //       duration: 3000,
+  //       isClosable: true,
+  //     });
+  //   } else if (footers?.success === false) {
+  //     toast({
+  //       title: "Not Success",
+  //       status: "error",
+  //       duration: 3000,
+  //       position: "top",
+  //       isClosable: true,
+  //     });
+  //   }
+  // }, [footers?.success]);
 
   return (
     <Box p="2rem">
